@@ -8,35 +8,62 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Healthcare color palette */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 11% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 11% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 11% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Medical primary - trust blue */
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 100% 85%;
+    --primary-dark: 210 100% 35%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Innovation secondary - soft teal */
+    --secondary: 180 25% 95%;
+    --secondary-foreground: 210 11% 15%;
+    --secondary-accent: 180 60% 45%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Success green - growth */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 71% 85%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 14% 50%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 210 11% 15%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 210 100% 50%;
+
+    /* Healthcare gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%), hsl(195 100% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(180 25% 95%), hsl(200 25% 85%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 50% / 0.1), hsl(180 60% 45% / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 40% 98%));
+
+    /* Healthcare shadows */
+    --shadow-soft: 0 2px 10px hsl(210 100% 50% / 0.08);
+    --shadow-card: 0 4px 20px hsl(210 40% 20% / 0.1);
+    --shadow-button: 0 2px 8px hsl(210 100% 50% / 0.25);
+    --shadow-glow: 0 0 30px hsl(210 100% 50% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +128,94 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Healthcare utility classes */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-button {
+    box-shadow: var(--shadow-button);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* DNA/Molecule pattern */
+  .dna-pattern {
+    background-image: radial-gradient(circle at 2px 2px, hsl(210 100% 50% / 0.15) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  .molecule-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(180 60% 45% / 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, hsl(210 100% 50% / 0.1) 1px, transparent 1px);
+    background-size: 30px 30px, 15px 15px;
+  }
+
+  /* Smooth animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(210 100% 50% / 0.3); }
+    50% { box-shadow: 0 0 30px hsl(210 100% 50% / 0.5); }
+  }
+
+  @keyframes slide-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .pulse-glow-animation {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .slide-up-animation {
+    animation: slide-up 0.6s ease-out;
   }
 }
